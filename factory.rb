@@ -11,7 +11,7 @@ class Factory
       end
 
       define_method ("[]=") do |attribute, value|
-        instance_variable_set("@#{attribute}", value)
+        attribute.class == Fixnum ? instance_variable_set("@#{attributes[attribute]}", value) : instance_variable_set("@#{attribute}", value)
       end
 
       define_method :initialize do |*values|
@@ -44,6 +44,7 @@ p joe['name']
 p joe['address'] = 'dnipro'
 p joe[:name]
 p joe[:address]
+p joe[0] = "Den"
 p joe[0]
 p joe[1]
 p joe.greeting
